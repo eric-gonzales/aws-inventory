@@ -1,4 +1,8 @@
 import boto3
+import os
+
+profile = os.environ['AWS_PROFILE']
+print "Inventory profile: " + profile
 
 rds_count = 0
 ec2_count = 0
@@ -32,8 +36,10 @@ print "EC2 count is: " + str(ec2_count)
 print "RDS count is: " + str(rds_count)
 print "Lambda count is: " + str(lambda_count)
 
-#f = open("account.txt", "a")
-#f.write("EC2 count is : " + str(ec2_count))
-#f.close()
+f = open(profile + ".txt", "a")
+f.write("EC2 count is : " + str(ec2_count) + "\n")
+f.write("RDS count is: " + str(rds_count) + "\n")
+f.write("Lambda count is: " + str(lambda_count) + "\n")
+f.close()
 
 print "Done!"
